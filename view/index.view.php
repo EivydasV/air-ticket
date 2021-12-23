@@ -12,24 +12,8 @@
 </head>
 <body>
     <?php 
-    if(isset($_POST['submit'])){
-      
-           
+    if(isset($_POST['submit'])){  
             if($_POST['bagazas'] === '20+') (int)$_POST['kaina'] += 30;
-        var_dump($_POST['pastabos']);
-        //     echo $data. '<br>';
-        // }
-        // $kodas = $_POST['kodas'];
-        // $skrydzioNr = $_POST['skrydzioNr'];
-        // $vardas = $_POST['vardas'];
-        // $pavarde = $_POST['pavarde'];
-        // $iskurskrenda = $_POST['iskurskrenda'];
-        // $ikurskrenda = $_POST['ikurskrenda'];
-        // $kaina = $_POST['kaina'];
-        // $iskurskrenda = $_POST['iskurskrenda'];
-        // $bagazas = $_POST['bagazas'];
-        // $pastabos = $_POST['pastabos'];
-
     }
     ?>
     <div class="container">

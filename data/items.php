@@ -1,7 +1,4 @@
 <?php 
-$students = [
-   
-];
 
 $bagazas = range(1, 20);
 array_push($bagazas, "20+");
