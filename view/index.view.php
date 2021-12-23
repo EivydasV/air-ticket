@@ -11,80 +11,146 @@
 
 </head>
 <body>
+    <?php 
+    if(isset($_POST['submit'])){
+      
+           
+            if($_POST['bagazas'] === '20+') (int)$_POST['kaina'] += 30;
+        var_dump($_POST['pastabos']);
+        //     echo $data. '<br>';
+        // }
+        // $kodas = $_POST['kodas'];
+        // $skrydzioNr = $_POST['skrydzioNr'];
+        // $vardas = $_POST['vardas'];
+        // $pavarde = $_POST['pavarde'];
+        // $iskurskrenda = $_POST['iskurskrenda'];
+        // $ikurskrenda = $_POST['ikurskrenda'];
+        // $kaina = $_POST['kaina'];
+        // $iskurskrenda = $_POST['iskurskrenda'];
+        // $bagazas = $_POST['bagazas'];
+        // $pastabos = $_POST['pastabos'];
+
+    }
+    ?>
     <div class="container">
         <h1 class="">AirTicket</h1>
-        <form>
+
+
+    <form method="POST">
+        
         <div class="mb-3">
         <label for="skrydzioNr" class="form-label">Skrydžio nr.</label>
             <select class="form-select" id='skrydzioNr'
             name='skrydzioNr'
             >
-                <option selected>select</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option selected disabled value="">select</option>
+                <?php foreach ($skrydzioRandNr as $skrydzioNr): ?>
+                <option value=<?=$skrydzioNr?>><?=$skrydzioNr?></option>
+                <?php endforeach ?>
             </select>
         </div>
         <div class="mb-3">
             <label for="kodas" class="form-label">Asmens Kodas</label>
             <input type="number" class="form-control"
             name='kodas'
+            required
             id="kodas">
         </div>
         <div class="mb-3">
             <label for="vardas" class="form-label">Vardas</label>
             <input type="text" class="form-control"
             name='vardas'
+            required
             id="vardas">
         </div>
         <div class="mb-3">
             <label for="pavarde" class="form-label">Pavarde</label>
             <input type="text" class="form-control"
             name='pavarde'
+            required
             id="pavarde">
         </div>
         <div class="mb-3">
         <label for="iskurskrenda" class="form-label">Iš kur skrendą</label>
             <select class="form-select" id='iskurskrenda'
             name='iskurskrenda'
+            
+            required
             >
-                <option selected>select</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option selected disabled value="">select</option>
+                <?php foreach ($countries as $country): ?>
+                <option value="<?=$country?>"><?=$country?></option>
+                <?php endforeach ?>
             </select>
         </div>
         <div class="mb-3">
         <label for="ikurskrenda" class="form-label">Į kur skrendą</label>
             <select class="form-select" id='ikurskrenda'
             name='ikurskrenda'
+            required
             >
-                <option selected>select</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                <option selected disabled value="">select</option>
+                <?php foreach ($countries as $country): ?>
+                <option value="<?=$country?>"><?=$country?></option>
+                <?php endforeach ?>
             </select>
         </div>
         <div class="mb-3">
             <label for="kaina" class="form-label">Kaina &euro;</label>
             <input type="number" class="form-control"
             name='kaina'
+            required
             id="kaina">
         </div>
         <div class="mb-3">
             <label for="bagazas" class="form-label">Bagažas (kg)</label>
-            <input type="number" class="form-control"
+            <select class="form-select" id='bagazas'
             name='bagazas'
-            id="bagazas">
+            required
+            >
+                <option selected disabled value="">select</option>
+                <?php foreach ($bagazas as $luggage): ?>
+                <option value="<?=$luggage?>"><?=$luggage?></option>
+                <?php endforeach ?>
+            </select>
         </div>
         <div class="mb-3">
             <label for="pastabos" class="form-label">Pastabos</label>
             <textarea class="form-control" placeholder="Leave a comment here" id="pastabos" name='pastabos'></textarea>
 
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <button type="submit" name='submit' class="btn btn-primary">Submit</button>
+    </form>
+    <?php if(isset($_POST['submit'])):?>
+        <?php if($_POST['iskurskrenda'] !== $_POST['ikurskrenda']):?>
+            <table class="table mt-5">
+                <thead class="thead-dark">
+                        <tr>
+                        <?php foreach ($_POST as $key =>$data): ?>
+                            <?php if($key !== 'submit'):?>
+                                <th scope="col"><?=$key?></th>
+                            <?php endif?>
+                        <?php endforeach ?>
+                        </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                    <?php foreach ($_POST as $key =>$data): ?>
+                        <?php if($key !== 'submit'):?>
+                            <td scope="col"><?=$data?></td>
+                        <?php endif?>
+                    <?php endforeach ?>
+                    </tr>
+                
+                </tbody>
+        </table>
+        <?php else: ?>
+            <h2>iš kur skrenda ir į kur skrenda negali būti tokie patys</h2>
+        <?php endif?>
+<?php endif?>
     </div>
+
 
 </body>
 </html>
